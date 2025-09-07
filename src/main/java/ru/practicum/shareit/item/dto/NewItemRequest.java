@@ -1,17 +1,14 @@
-package ru.practicum.shareit.item.model;
+package ru.practicum.shareit.item.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Data
-@Builder(toBuilder = true)
-@RequiredArgsConstructor
-@AllArgsConstructor
-public class Item {
+@EqualsAndHashCode(of = {"id"})
+public class NewItemRequest {
     private Long id;
     @NotBlank
     private String name;
@@ -19,7 +16,8 @@ public class Item {
     private String description;
     @NotNull
     private Boolean available;
-    @NotNull
+    @Positive
     private Long owner;
+    @Positive
     private Long request;
 }
