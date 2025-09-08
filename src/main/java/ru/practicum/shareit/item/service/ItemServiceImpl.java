@@ -39,7 +39,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDto updateItem(Long itemId, UpdateItemRequest request, Long ownerId) {
-        log.info("PUT /items - обновление существующей вещи");
+        log.info("PATCH /items - обновление существующей вещи");
 
         Item item = itemStorage.getItemById(itemId);
 

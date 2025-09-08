@@ -54,12 +54,12 @@ public class InMemoryItemStorage implements ItemStorage {
 
     @Override
     public Collection<Item> getAllItems() {
-        return items.values();
+        return new ArrayList<>(items.values());
     }
 
     private boolean checkItem(Item item, String text) {
         return item.getAvailable().equals(Boolean.TRUE)
-                && (item.getName().toLowerCase().contains(text) || item.getName().equalsIgnoreCase(text)
-                || item.getDescription().toLowerCase().contains(text));
+                && (item.getName().toLowerCase().contains(text.toLowerCase())
+                || item.getDescription().toLowerCase().contains(text.toLowerCase()));
     }
 }

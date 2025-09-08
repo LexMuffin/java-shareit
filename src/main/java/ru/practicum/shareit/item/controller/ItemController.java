@@ -21,7 +21,7 @@ public class ItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDto create(@RequestHeader("X-Sharer-User-Id") Long ownerId,
+    public ItemDto create(@RequestHeader(HeaderConstants.X_SHARER_USER_ID) Long ownerId,
                           @Valid @RequestBody NewItemRequest item) {
         return itemService.createItem(ownerId, item);
     }
@@ -32,20 +32,20 @@ public class ItemController {
     }
 
     @GetMapping("/search")
-    public Collection<ItemDto> findItemsForTenant(@RequestHeader(value = "X-Sharer-User-Id", required = false) Long ownerId,
+    public Collection<ItemDto> findItemsForTenant(@RequestHeader(value = HeaderConstants.X_SHARER_USER_ID, required = false) Long ownerId,
                                                   @RequestParam(name = "text", defaultValue = "") String text) {
         return itemService.getItemByText(text);
     }
 
     @GetMapping
-    public Collection<ItemDto> getItems(@RequestHeader("X-Sharer-User-Id") Long ownerId) {
+    public Collection<ItemDto> getItems(@RequestHeader(HeaderConstants.X_SHARER_USER_ID) Long ownerId) {
         return itemService.getAllItemsById(ownerId);
     }
 
     @PatchMapping(path)
     public ItemDto update(@PathVariable("id") Long itemId,
                           @Valid @RequestBody UpdateItemRequest newItem,
-                          @RequestHeader("X-Sharer-User-Id") Long ownerId) {
+                          @RequestHeader(HeaderConstants.X_SHARER_USER_ID) Long ownerId) {
         return itemService.updateItem(itemId, newItem, ownerId);
     }
 

@@ -1,5 +1,6 @@
 package ru.practicum.shareit.user.storage;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import ru.practicum.shareit.exception.NotFoundException;
@@ -12,6 +13,12 @@ import java.util.*;
 public class InMemoryUserStorage implements UserStorage {
 
     private final Map<Long, User> users = new HashMap<>();
+    private final Set<String> usersEmailsSet = new HashSet<>();
+
+    @PostConstruct
+    public void initEmailSet() {
+        users.values().forEach(user -> usersEmailsSet.add(user.getEmail()));
+    }
 
     private Long getNextUserId() {
         long currentMaxId = users.keySet()
@@ -26,6 +33,7 @@ public class InMemoryUserStorage implements UserStorage {
     public User createUser(User user) {
         user.setId(getNextUserId());
         users.put(user.getId(), user);
+        usersEmailsSet.add(user.getEmail());
         return user;
     }
 
@@ -34,6 +42,7 @@ public class InMemoryUserStorage implements UserStorage {
         User existingUser = users.get(user.getId());
         existingUser.setName(user.getName());
         existingUser.setEmail(user.getEmail());
+        usersEmailsSet.add(existingUser.getEmail());
         return existingUser;
     }
 
@@ -50,12 +59,11 @@ public class InMemoryUserStorage implements UserStorage {
 
     @Override
     public Collection<User> getAllUsers() {
-        return users.values();
+        return new ArrayList<>(users.values());
     }
 
     @Override
     public boolean isUserEmailExists(String email) {
-        return users.values().stream()
-                .anyMatch(user -> user.getEmail().equalsIgnoreCase(email));
+        return usersEmailsSet.contains(email);
     }
 }
