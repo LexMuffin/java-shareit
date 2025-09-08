@@ -2,7 +2,6 @@ package ru.practicum.shareit.item.dto;
 
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
 public class UpdateItemRequest {
