@@ -8,7 +8,9 @@ import ru.practicum.shareit.user.model.User;
 @Table(name = "requests")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter @Setter @ToString
+@Getter
+@Setter
+@ToString
 public class ItemRequest {
 
     @Id
