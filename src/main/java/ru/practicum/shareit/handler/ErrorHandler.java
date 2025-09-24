@@ -10,7 +10,7 @@ import ru.practicum.shareit.exception.*;
 public class ErrorHandler {
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleValidation(final ValidationException e) {
         return new ErrorResponse(e.getMessage());
     }
