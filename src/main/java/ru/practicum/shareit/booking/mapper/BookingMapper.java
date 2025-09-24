@@ -18,7 +18,7 @@ import ru.practicum.shareit.user.model.User;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ItemMapper.class, UserMapper.class})
+@Mapper(componentModel = org.mapstruct.MappingConstants.ComponentModel.SPRING, uses = {ItemMapper.class, UserMapper.class})
 public interface BookingMapper {
 
     BookingMapper INSTANCE = Mappers.getMapper(BookingMapper.class);

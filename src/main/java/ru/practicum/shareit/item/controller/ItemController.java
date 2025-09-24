@@ -22,49 +22,47 @@ import java.util.Collection;
 public class ItemController {
 
     private final ExtendedItemService itemService;
-    private final String path = "/{id}";
-    private final String commentPath = "/comment";
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDto create(@RequestHeader(HeaderConstants.X_SHARER_USER_ID) Long ownerId,
+    public ItemDto create(@RequestHeader(ItemControllerHeaderConstants.X_SHARER_USER_ID) Long ownerId,
                           @Valid @RequestBody NewItemRequest item) {
         return itemService.createItem(ownerId, item);
     }
 
-    @GetMapping(path)
-    public ExtendedItemDto findItem(@Valid @PathVariable("id") Long itemId,
-                                    @RequestHeader(HeaderConstants.X_SHARER_USER_ID) Long ownerId) {
+    @GetMapping(ItemControllerHeaderConstants.PATH)
+    public ExtendedItemDto findItem(@Valid @PathVariable(ItemControllerHeaderConstants.ID) Long itemId,
+                                    @RequestHeader(ItemControllerHeaderConstants.X_SHARER_USER_ID) Long ownerId) {
         return itemService.getItemById(itemId, ownerId);
     }
 
-    @GetMapping("/search")
-    public Collection<ItemDto> findItemsForTenant(@RequestHeader(value = HeaderConstants.X_SHARER_USER_ID, required = false) Long ownerId,
+    @GetMapping(ItemControllerHeaderConstants.SEARCH_PATH)
+    public Collection<ItemDto> findItemsForTenant(@RequestHeader(value = ItemControllerHeaderConstants.X_SHARER_USER_ID, required = false) Long ownerId,
                                                   @RequestParam(name = "text", defaultValue = "") String text) {
         return itemService.getItemByText(text);
     }
 
     @GetMapping
-    public Collection<ExtendedItemDto> getItems(@RequestHeader(HeaderConstants.X_SHARER_USER_ID) Long ownerId) {
+    public Collection<ExtendedItemDto> getItems(@RequestHeader(ItemControllerHeaderConstants.X_SHARER_USER_ID) Long ownerId) {
         return itemService.getAllItemsById(ownerId);
     }
 
-    @PatchMapping(path)
-    public ItemDto update(@PathVariable("id") Long itemId,
+    @PatchMapping(ItemControllerHeaderConstants.PATH)
+    public ItemDto update(@PathVariable(ItemControllerHeaderConstants.ID) Long itemId,
                           @Valid @RequestBody UpdateItemRequest newItem,
-                          @RequestHeader(HeaderConstants.X_SHARER_USER_ID) Long ownerId) {
+                          @RequestHeader(ItemControllerHeaderConstants.X_SHARER_USER_ID) Long ownerId) {
         return itemService.updateItem(itemId, newItem, ownerId);
     }
 
-    @DeleteMapping(path)
-    public void delete(@Valid @PathVariable("id") Long itemId) {
+    @DeleteMapping(ItemControllerHeaderConstants.PATH)
+    public void delete(@Valid @PathVariable(ItemControllerHeaderConstants.ID) Long itemId) {
         itemService.deleteItem(itemId);
     }
 
-    @PostMapping(path + commentPath)
+    @PostMapping(ItemControllerHeaderConstants.PATH_PLUS_COMMENT_PATH)
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentDto addComment(@RequestHeader(HeaderConstants.X_SHARER_USER_ID) Long authorId,
-                                 @PathVariable("id") Long itemId,
+    public CommentDto addComment(@RequestHeader(ItemControllerHeaderConstants.X_SHARER_USER_ID) Long authorId,
+                                 @PathVariable(ItemControllerHeaderConstants.ID) Long itemId,
                                  @Valid @RequestBody NewCommentRequest newCommentRequest) {
         return itemService.addComment(authorId, itemId, newCommentRequest);
     }

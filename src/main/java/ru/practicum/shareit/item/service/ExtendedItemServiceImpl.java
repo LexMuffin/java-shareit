@@ -110,7 +110,7 @@ public class ExtendedItemServiceImpl implements ExtendedItemService {
             return ItemMapper.INSTANCE.mapToExtendedItemDto(
                     item,
                     findLastBookingEndByItemId(itemId, LocalDateTime.now()),
-                    findLastBookingEndByItemId(itemId, LocalDateTime.now()),
+                    findNextBookingEndByItemId(itemId, LocalDateTime.now()),
                     commentRepository.findAllByItemId(itemId)
             );
         }
