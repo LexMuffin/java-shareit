@@ -1,21 +1,27 @@
 package ru.practicum.shareit.user.model;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
-@Builder(toBuilder = true)
-@RequiredArgsConstructor
+@Entity
+@Table(name = "users",
+        uniqueConstraints = {
+            @UniqueConstraint(columnNames = "email", name = "uq_user_email")
+    })
 @AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+
+    @Column(name = "name", nullable = false)
     private String name;
-    @NotNull
-    @Email
+
+    @Column(name = "email", nullable = false)
     private String email;
 }

@@ -2,6 +2,7 @@ package ru.practicum.shareit.user.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.user.dto.NewUserRequest;
@@ -11,13 +12,13 @@ import ru.practicum.shareit.user.service.UserServiceImpl;
 
 import java.util.Collection;
 
+@Slf4j
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserServiceImpl userService;
-    private final String path = "/{id}";
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -25,8 +26,8 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @GetMapping(path)
-    public UserDto findUser(@PathVariable("id") Long userId) {
+    @GetMapping(UserControllerHeaderConstants.PATH)
+    public UserDto findUser(@PathVariable(UserControllerHeaderConstants.ID) Long userId) {
         return userService.getUserById(userId);
     }
 
@@ -35,14 +36,14 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PatchMapping(path)
-    public UserDto update(@PathVariable("id") Long userId,
+    @PatchMapping(UserControllerHeaderConstants.PATH)
+    public UserDto update(@PathVariable(UserControllerHeaderConstants.ID) Long userId,
                           @Valid @RequestBody UpdateUserRequest newUser) {
         return userService.updateUser(userId, newUser);
     }
 
-    @DeleteMapping(path)
-    public void delete(@PathVariable("id") Long userId) {
+    @DeleteMapping(UserControllerHeaderConstants.PATH)
+    public void delete(@PathVariable(UserControllerHeaderConstants.ID) Long userId) {
         userService.deleteUser(userId);
     }
 }
