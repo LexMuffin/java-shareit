@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class BookingDto {
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     private LocalDateTime start;
     private LocalDateTime end;

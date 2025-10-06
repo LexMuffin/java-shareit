@@ -11,10 +11,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CommentDto {
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     private String text;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long itemId;
     private String authorName;
     private LocalDateTime created;

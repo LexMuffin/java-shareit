@@ -16,4 +16,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
             "(lower(i.name) like lower(concat('%', :text, '%')) or " +
             "lower(i.description) like lower(concat('%', :text, '%')))")
     List<Item> findByText(@Param("text") String text);
+
+    List<Item> findAllByRequestId(Long requestId);
+
+    List<Item> findAllByRequestIdIn(List<Long> requestIds);
 }

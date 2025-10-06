@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import ru.practicum.shareit.user.model.User;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "requests")
 @AllArgsConstructor
@@ -24,4 +26,7 @@ public class ItemRequest {
     @ToString.Exclude
     @JoinColumn(name = "requestor_id", foreignKey = @ForeignKey(name = "fk_requests_user"))
     private User requestor;
+
+    @Column(name = "created")
+    private LocalDateTime created;
 }

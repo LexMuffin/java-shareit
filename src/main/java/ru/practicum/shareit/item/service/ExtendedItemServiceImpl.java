@@ -67,13 +67,14 @@ public class ExtendedItemServiceImpl implements ExtendedItemService {
     public ItemDto createItem(Long ownerId, NewItemRequest request) {
         log.info("POST /items - добавление новой вещи");
 
-        User owner = userRepository.findById(ownerId)
-                .orElseThrow(() -> new NotFoundException(String.format("Пользователь с id %d не найден", ownerId)));
+        User owner = findUserById(ownerId);
 
         Item item = ItemMapper.INSTANCE.mapToItem(owner, request);
-        itemRepository.save(item);
+        log.info(String.format("item - %s", item.toString()));
+        Item updatedItem = itemRepository.save(item);
+        log.info(String.format("updated - %s", updatedItem.toString()));
 
-        return ItemMapper.INSTANCE.mapToItemDto(item);
+        return ItemMapper.INSTANCE.mapToItemDto(updatedItem);
     }
 
     @Override
@@ -201,9 +202,9 @@ public class ExtendedItemServiceImpl implements ExtendedItemService {
         }
 
         Comment comment = CommentMapper.INSTANCE.mapToComment(author, item, newCommentRequest);
-        commentRepository.save(comment);
+        Comment updatedComment = commentRepository.save(comment);
 
-        return CommentMapper.INSTANCE.mapToCommentDto(comment);
+        return CommentMapper.INSTANCE.mapToCommentDto(updatedComment);
 
     }
 }

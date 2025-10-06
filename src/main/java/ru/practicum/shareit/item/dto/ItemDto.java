@@ -4,18 +4,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Data
-@NoArgsConstructor
+@RequiredArgsConstructor
 @AllArgsConstructor
 public class ItemDto {
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     private String name;
     private String description;
     private Boolean available = Boolean.FALSE;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long owner;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long request;
+    private Long requestId;
 }

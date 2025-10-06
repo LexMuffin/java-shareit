@@ -22,14 +22,14 @@ public interface ItemMapper {
     ItemMapper INSTANCE = Mappers.getMapper(ItemMapper.class);
 
     @Mapping(source = "owner.id", target = "owner")
-    @Mapping(source = "requestId", target = "request")
+    @Mapping(source = "requestId", target = "requestId")
     ItemDto mapToItemDto(Item item);
 
     @Mapping(target = "id", source = "newItemRequest.id")
     @Mapping(target = "name", source = "newItemRequest.name")
     @Mapping(target = "description", source = "newItemRequest.description")
     @Mapping(target = "available", source = "newItemRequest.available")
-    @Mapping(target = "requestId", source = "newItemRequest.request")
+    @Mapping(target = "requestId", source = "newItemRequest.requestId")
     @Mapping(target = "owner", source = "user")
     Item mapToItem(User user, NewItemRequest newItemRequest);
 
@@ -44,7 +44,7 @@ public interface ItemMapper {
     @Mapping(source = "item.description", target = "description")
     @Mapping(source = "item.available", target = "available")
     @Mapping(source = "item.owner.id", target = "owner")
-    @Mapping(source = "item.requestId", target = "request")
+    @Mapping(source = "item.requestId", target = "requestId")
     @Mapping(source = "lastBooking", target = "lastBooking")
     @Mapping(source = "nextBooking", target = "nextBooking")
     @Mapping(source = "comments", target = "comments")
@@ -58,7 +58,7 @@ public interface ItemMapper {
     @Mapping(source = "item.description", target = "description")
     @Mapping(source = "item.available", target = "available")
     @Mapping(source = "item.owner.id", target = "owner")
-    @Mapping(source = "item.requestId", target = "request")
+    @Mapping(source = "item.requestId", target = "requestId")
     @Mapping(source = "comments", target = "comments")
     ExtendedItemDto mapToExtendedItemDto(Item item, List<Comment> comments);
 

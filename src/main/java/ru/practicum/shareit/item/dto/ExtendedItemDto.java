@@ -21,7 +21,7 @@ public class ExtendedItemDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long owner;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long request;
+    private Long requestId;
     private LocalDateTime lastBooking;
     private LocalDateTime nextBooking;
     private List<CommentDto> comments;

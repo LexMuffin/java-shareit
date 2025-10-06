@@ -1,9 +1,13 @@
 package ru.practicum.shareit.user.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = {"email"})
 public class UpdateUserRequest {
     private Long id;

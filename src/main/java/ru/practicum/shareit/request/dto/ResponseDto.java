@@ -5,16 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class ItemRequestDto {
+public class ResponseDto {
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
-    private String description;
-    private Long requestorId;
-    private LocalDateTime created;
-    private List<ResponseDto> items;
+    private String name;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long ownerId;
 }

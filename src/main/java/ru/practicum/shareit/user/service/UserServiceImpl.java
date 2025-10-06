@@ -41,9 +41,9 @@ public class UserServiceImpl implements UserService {
             throw new ConflictException("Пользователь с такой почтой уже существует");
         }
         User user = UserMapper.mapToUser(request);
-        userRepository.save(user);
+        User newUser = userRepository.save(user);
 
-        return UserMapper.mapToUserDto(user);
+        return UserMapper.mapToUserDto(newUser);
     }
 
     @Override
