@@ -80,7 +80,7 @@ public class ExtendedItemServiceImpl implements ExtendedItemService {
     @Override
     @Transactional
     public ItemDto updateItem(Long itemId, UpdateItemRequest request, Long ownerId) {
-        log.info("PATCH /items - обновление существующей вещи");
+        log.info("PATCH /items/{id} - обновление существующей вещи");
 
         Item item = findItemById(itemId);
 
@@ -97,12 +97,12 @@ public class ExtendedItemServiceImpl implements ExtendedItemService {
     @Override
     @Transactional
     public void deleteItem(Long itemId) {
-        log.info("DELETE /users - удаление существующего пользователя");
+        log.info("DELETE /items/{id} - удаление существующего пользователя");
         itemRepository.deleteById(itemId);
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public ExtendedItemDto getItemById(Long itemId, Long ownerId) {
         log.info("GET /items/{id} - получение существующей вещи");
 
@@ -191,7 +191,7 @@ public class ExtendedItemServiceImpl implements ExtendedItemService {
     @Override
     @Transactional
     public CommentDto addComment(Long authorId, Long itemId, NewCommentRequest newCommentRequest) {
-        log.info("Добавление комментария к вещи");
+        log.info("POST /items/{id}Добавление комментария к вещи");
 
         User author = findUserById(authorId);
         Item item = findItemById(itemId);

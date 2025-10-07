@@ -12,7 +12,7 @@ import ru.practicum.shareit.booking.service.BookingService;
 import java.util.List;
 
 @Slf4j
-@RestController
+@RestController("serverBookingController")
 @RequestMapping(path = "/bookings")
 @RequiredArgsConstructor
 public class BookingController {

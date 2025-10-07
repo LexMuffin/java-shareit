@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserDto updateUser(Long userId, UpdateUserRequest request) {
-        log.info("PUT /users - обновление существующего пользователя");
+        log.info("PATCH /users/{id} - обновление существующего пользователя");
         if (userId == null) {
             log.error("Идентификатор пользователя должен быть указан");
             throw new NotFoundException("Пользователь не указан");
@@ -66,14 +66,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void deleteUser(Long userId) {
-        log.info("DELETE /users - удаление существующего пользователя");
+        log.info("DELETE /users/{id} - удаление существующего пользователя");
         userRepository.deleteById(userId);
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDto getUserById(Long userId) {
-        log.info("GET /users - получение существующего пользователя");
+        log.info("GET /users/{id} - получение существующего пользователя");
         return UserMapper.mapToUserDto(findUser(userId));
     }
 
