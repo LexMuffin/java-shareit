@@ -36,7 +36,7 @@ public class ItemControllerTest {
     @MockBean
     private ExtendedItemService itemService;
 
-    private final String X_SHARER_USER_ID = "X-Sharer-User-Id";
+    private final String xSharerUserId = "X-Sharer-User-Id";
 
     private final ItemDto itemDto = new ItemDto(
             1L,
@@ -98,7 +98,7 @@ public class ItemControllerTest {
                 .thenReturn(updatedItemDto);
 
         mock.perform(patch("/items/{id}", 1L)
-                        .header(X_SHARER_USER_ID, 1L)
+                        .header(xSharerUserId, 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -112,7 +112,7 @@ public class ItemControllerTest {
                 .thenReturn(extendedItemDto);
 
         mock.perform(get("/items/{id}", 1L)
-                        .header(X_SHARER_USER_ID, 1L))
+                        .header(xSharerUserId, 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.name").value("item"));
@@ -124,7 +124,7 @@ public class ItemControllerTest {
                 .thenReturn(List.of(extendedItemDto));
 
         mock.perform(get("/items")
-                        .header(X_SHARER_USER_ID, 1L))
+                        .header(xSharerUserId, 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1L));
     }
@@ -146,7 +146,7 @@ public class ItemControllerTest {
         NewCommentRequest request = new NewCommentRequest("comment", 1L, 1L);
 
         mock.perform(post("/items/{id}/comment", 1L)
-                        .header(X_SHARER_USER_ID, 1L)
+                        .header(xSharerUserId, 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().is2xxSuccessful());
@@ -155,7 +155,7 @@ public class ItemControllerTest {
     @Test
     public void testDeleteItem() throws Exception {
         mock.perform(delete("/items/{id}", 1L)
-                        .header(X_SHARER_USER_ID, 1L))
+                        .header(xSharerUserId, 1L))
                 .andExpect(status().isOk());
     }
 }

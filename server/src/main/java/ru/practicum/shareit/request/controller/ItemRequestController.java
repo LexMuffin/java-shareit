@@ -3,7 +3,6 @@ package ru.practicum.shareit.request.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shareit.booking.controller.BookingControllerHeaderConstants;
 import ru.practicum.shareit.request.dto.ItemRequestDto;
 import ru.practicum.shareit.request.dto.NewRequest;
 import ru.practicum.shareit.request.dto.UpdateRequest;

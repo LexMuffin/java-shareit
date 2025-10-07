@@ -37,7 +37,7 @@ public class BookingControllerTest {
     @MockBean
     private BookingService bookingService;
 
-    private final String X_SHARER_USER_ID = "X-Sharer-User-Id";
+    private final String xSharerUserId = "X-Sharer-User-Id";
 
     private final UserDto userDto = new UserDto(1L, "user", "user@email.com");
     private final ItemDto itemDto = new ItemDto(1L, "item", "description", true, 1L, null);
@@ -62,7 +62,7 @@ public class BookingControllerTest {
                 .thenReturn(bookingDto);
 
         mock.perform(post("/bookings")
-                .header(X_SHARER_USER_ID, 1L)
+                .header(xSharerUserId, 1L)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(newBookingRequest)))
                 .andExpect(status().is2xxSuccessful())
@@ -72,7 +72,7 @@ public class BookingControllerTest {
     }
 
     @Test
-    public void testUpdateBooking() throws Exception{
+    public void testUpdateBooking() throws Exception {
         BookingDto updatedBookingDto = new BookingDto(1L,
                 LocalDateTime.now().plusDays(1),
                 LocalDateTime.now().plusDays(2),
@@ -94,7 +94,7 @@ public class BookingControllerTest {
                 .thenReturn(updatedBookingDto);
 
         mock.perform(put("/bookings")
-                .header(X_SHARER_USER_ID, 1L)
+                .header(xSharerUserId, 1L)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(updateBookingRequest)))
                 .andExpect(status().isOk())
@@ -108,7 +108,7 @@ public class BookingControllerTest {
                 .thenReturn(bookingDto);
 
         mock.perform(get("/bookings/{id}", 1L)
-                .header(X_SHARER_USER_ID, 1L)
+                .header(xSharerUserId, 1L)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
@@ -123,7 +123,7 @@ public class BookingControllerTest {
                 .thenReturn(List.of(bookingDto));
 
         mock.perform(get("/bookings")
-                        .header(X_SHARER_USER_ID, 1L)
+                        .header(xSharerUserId, 1L)
                         .param("state", "ALL"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1L))
@@ -136,7 +136,7 @@ public class BookingControllerTest {
                 .thenReturn(List.of(bookingDto));
 
         mock.perform(get("/bookings/owner")
-                        .header(X_SHARER_USER_ID, 1L)
+                        .header(xSharerUserId, 1L)
                         .param("state", "ALL"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1L))
@@ -146,7 +146,7 @@ public class BookingControllerTest {
     @Test
     public void testDeleteBooking() throws Exception {
         mock.perform(delete("/bookings/{id}", 1L)
-                        .header(X_SHARER_USER_ID, 1L))
+                        .header(xSharerUserId, 1L))
                 .andExpect(status().isOk());
     }
 }

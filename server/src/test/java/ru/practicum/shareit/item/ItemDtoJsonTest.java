@@ -6,7 +6,6 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.json.JsonContent;
 import ru.practicum.shareit.item.comment.dto.CommentDto;
-import ru.practicum.shareit.item.dto.ExtendedItemDto;
 import ru.practicum.shareit.item.dto.ItemDto;
 
 import java.io.IOException;
@@ -39,16 +38,14 @@ public class ItemDtoJsonTest {
 
     @Test
     public void testItemDtoDeserialization() throws IOException {
-        String json = """
-            {
-                "id": 1,
-                "name": "name",
-                "description": "description",
-                "available": true,
-                "owner": 1,
-                "requestId": null
-            }
-            """;
+        String json = "{" +
+                "\"id\": 1," +
+                "\"name\": \"name\"," +
+                "\"description\": \"description\"," +
+                "\"available\": true," +
+                "\"owner\": 1," +
+                "\"requestId\": null" +
+                "}";
 
         ItemDto itemDto = itemDtoJson.parseObject(json);
 
@@ -77,14 +74,12 @@ public class ItemDtoJsonTest {
 
     @Test
     public void testCommentDtoDeserialization() throws IOException {
-        String json = """
-            {
-                "id": 1,
-                "text": "comment",
-                "authorName": "authorName",
-                "created": "2024-01-01T10:00:00"
-            }
-            """;
+        String json = "{" +
+                "\"id\": 1," +
+                "\"text\": \"comment\"," +
+                "\"authorName\": \"authorName\"," +
+                "\"created\": \"2024-01-01T10:00:00\"" +
+                "}";
 
         CommentDto commentDto = commentDtoJson.parseObject(json);
 

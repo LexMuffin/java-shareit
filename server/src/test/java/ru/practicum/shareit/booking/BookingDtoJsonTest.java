@@ -45,27 +45,25 @@ public class BookingDtoJsonTest {
 
     @Test
     public void testBookingDtoDeserialization() throws IOException {
-        String json = """
-            {
-                "id": 1,
-                "start": "2024-01-01T10:00:00",
-                "end": "2024-01-02T10:00:00",
-                "status": "APPROVED",
-                "item": {
-                    "id": 1,
-                    "name": "item",
-                    "description": "description",
-                    "available": true,
-                    "ownerId": 1,
-                    "requestId": null
-                },
-                "booker": {
-                    "id": 1,
-                    "name": "user",
-                    "email": "user@email.com"
-                }
-            }
-            """;
+        String json = "{" +
+                "\"id\": 1," +
+                "\"start\": \"2024-01-01T10:00:00\"," +
+                "\"end\": \"2024-01-02T10:00:00\"," +
+                "\"status\": \"APPROVED\"," +
+                "\"item\": {" +
+                "    \"id\": 1," +
+                "    \"name\": \"item\"," +
+                "    \"description\": \"description\"," +
+                "    \"available\": true," +
+                "    \"ownerId\": 1," +
+                "    \"requestId\": null" +
+                "}," +
+                "\"booker\": {" +
+                "    \"id\": 1," +
+                "    \"name\": \"user\"," +
+                "    \"email\": \"user@email.com\"" +
+                "}" +
+                "}";
 
         BookingDto bookingDto = bookingDtoJson.parseObject(json);
 

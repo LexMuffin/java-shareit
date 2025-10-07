@@ -35,7 +35,7 @@ public class RequestControllerTest {
     @MockBean
     private ItemRequestService requestService;
 
-    private final String X_SHARER_USER_ID = "X-Sharer-User-Id";
+    private final String xSharerUserId = "X-Sharer-User-Id";
 
     private final UserDto userDto = new UserDto(1L, "user", "user@email.com");
     private final ItemRequestDto itemRequestDto = new ItemRequestDto(
@@ -54,7 +54,7 @@ public class RequestControllerTest {
                 .thenReturn(itemRequestDto);
 
         mock.perform(post("/requests")
-                        .header(X_SHARER_USER_ID, 1L)
+                        .header(xSharerUserId, 1L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().is2xxSuccessful())
@@ -68,7 +68,7 @@ public class RequestControllerTest {
                 .thenReturn(itemRequestDto);
 
         mock.perform(get("/requests/{id}", 1L)
-                        .header(X_SHARER_USER_ID, 1L))
+                        .header(xSharerUserId, 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.requestorId").value(1L));
@@ -80,7 +80,7 @@ public class RequestControllerTest {
                 .thenReturn(List.of(itemRequestDto));
 
         mock.perform(get("/requests")
-                        .header(X_SHARER_USER_ID, 1L))
+                        .header(xSharerUserId, 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1L))
                 .andExpect(jsonPath("$[0].requestorId").value(1L));
@@ -92,7 +92,7 @@ public class RequestControllerTest {
                 .thenReturn(List.of(itemRequestDto));
 
         mock.perform(get("/requests/all")
-                        .header(X_SHARER_USER_ID, 1L))
+                        .header(xSharerUserId, 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1L));
     }
@@ -100,7 +100,7 @@ public class RequestControllerTest {
     @Test
     public void testDeleteRequest() throws Exception {
         mock.perform(delete("/requests/{id}", 1L)
-                        .header(X_SHARER_USER_ID, 1L))
+                        .header(xSharerUserId, 1L))
                 .andExpect(status().isOk());
     }
 }

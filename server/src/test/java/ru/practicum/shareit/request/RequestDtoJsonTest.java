@@ -40,15 +40,13 @@ public class RequestDtoJsonTest {
 
     @Test
     public void testItemRequestDtoDeserialization() throws IOException {
-        String json = """
-            {
-                "id": 1,
-                "description": "Нужна дрель",
-                "requestorId": 1,
-                "created": "2024-01-01T10:00:00",
-                "items": []
-            }
-            """;
+        String json = "{" +
+                "\"id\": 1," +
+                "\"description\": \"Нужна дрель\"," +
+                "\"requestorId\": 1," +
+                "\"created\": \"2024-01-01T10:00:00\"," +
+                "\"items\": []" +
+                "}";
 
         ItemRequestDto requestDto = itemRequestDtoJson.parseObject(json);
 

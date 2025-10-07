@@ -1,7 +1,5 @@
 package ru.practicum.shareit.user;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -32,13 +30,11 @@ public class UserDtoJsonTest {
 
     @Test
     public void testUserDtoDeserialization() throws IOException {
-        String stringJson = """
-                {
-                "id": 1,
-                "name": "name",
-                "email": "email@email.com"
-                }
-                """;
+        String stringJson = "{" +
+                "\"id\": 1," +
+                "\"name\": \"name\"," +
+                "\"email\": \"email@email.com\"" +
+                "}";
         UserDto userDto = json.parseObject(stringJson);
 
         assertThat(userDto).isNotNull();
