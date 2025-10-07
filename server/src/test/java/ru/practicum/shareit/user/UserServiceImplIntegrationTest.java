@@ -34,10 +34,15 @@ public class UserServiceImplIntegrationTest {
 
     @AfterEach
     public void cleanUp() {
-        em.createNativeQuery("DELETE FROM users").executeUpdate();
+        em.createNativeQuery("SET REFERENTIAL_INTEGRITY FALSE").executeUpdate();
 
-        // Сбрасываем sequence (замените 'users_id_seq' на имя вашего sequence)
-        em.createNativeQuery("ALTER SEQUENCE users_id_seq RESTART WITH 1").executeUpdate();
+        em.createQuery("DELETE FROM Comment").executeUpdate();
+        em.createQuery("DELETE FROM Booking").executeUpdate();
+        em.createQuery("DELETE FROM Item").executeUpdate();
+        em.createQuery("DELETE FROM ItemRequest").executeUpdate();
+        em.createQuery("DELETE FROM User").executeUpdate();
+
+        em.createNativeQuery("SET REFERENTIAL_INTEGRITY TRUE").executeUpdate();
 
         em.flush();
     }

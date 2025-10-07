@@ -51,11 +51,15 @@ public class ItemServiceImplIntegrationTest {
 
     @AfterEach
     public void cleanUp() {
-        em.createNativeQuery("TRUNCATE TABLE comments, bookings, items, users RESTART IDENTITY CASCADE").executeUpdate();
+        em.createNativeQuery("SET REFERENTIAL_INTEGRITY FALSE").executeUpdate();
 
-        em.createNativeQuery("ALTER SEQUENCE users_id_seq RESTART WITH 1").executeUpdate();
-        em.createNativeQuery("ALTER SEQUENCE items_id_seq RESTART WITH 1").executeUpdate();
-        em.createNativeQuery("ALTER SEQUENCE bookings_id_seq RESTART WITH 1").executeUpdate();
+        em.createQuery("DELETE FROM Comment").executeUpdate();
+        em.createQuery("DELETE FROM Booking").executeUpdate();
+        em.createQuery("DELETE FROM Item").executeUpdate();
+        em.createQuery("DELETE FROM ItemRequest").executeUpdate();
+        em.createQuery("DELETE FROM User").executeUpdate();
+
+        em.createNativeQuery("SET REFERENTIAL_INTEGRITY TRUE").executeUpdate();
 
         em.flush();
     }

@@ -37,7 +37,16 @@ public class RequestServiceImplIntegrationTest {
 
     @AfterEach
     public void cleanUp() {
-        em.createNativeQuery("TRUNCATE TABLE comments, bookings, items, requests, users RESTART IDENTITY CASCADE").executeUpdate();
+        em.createNativeQuery("SET REFERENTIAL_INTEGRITY FALSE").executeUpdate();
+
+        em.createQuery("DELETE FROM Comment").executeUpdate();
+        em.createQuery("DELETE FROM Booking").executeUpdate();
+        em.createQuery("DELETE FROM Item").executeUpdate();
+        em.createQuery("DELETE FROM ItemRequest").executeUpdate();
+        em.createQuery("DELETE FROM User").executeUpdate();
+
+        em.createNativeQuery("SET REFERENTIAL_INTEGRITY TRUE").executeUpdate();
+
         em.flush();
     }
 
