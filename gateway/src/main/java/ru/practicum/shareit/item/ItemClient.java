@@ -45,7 +45,6 @@ public class ItemClient extends BaseClient {
     public ResponseEntity<Object> getItemByText(Long ownerId, String text) {
         Map<String, Object> parameters = Map.of("text", (text == null ? "" : text));
         return get("/search?text={text}", ownerId, Map.of("text", ""));
-
     }
 
     public ResponseEntity<Object> getAllItemsById(Long ownerId) {
@@ -53,7 +52,7 @@ public class ItemClient extends BaseClient {
     }
 
     public ResponseEntity<Object> addComment(Long authorId, Long itemId, NewCommentRequest newCommentRequest) {
-        return post("/" + itemId + "/comment" , authorId, newCommentRequest);
+        return post("/" + itemId + "/comment", authorId, newCommentRequest);
     }
 
 
