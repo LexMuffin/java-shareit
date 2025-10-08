@@ -1,6 +1,7 @@
 package ru.practicum.shareit.request;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.request.dto.ItemRequestDto;
 import ru.practicum.shareit.request.dto.NewRequest;
@@ -15,6 +16,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+@SpringBootTest
 class ItemRequestMapperTest {
 
     private final User user = new User(1L, "user", "user@email.com");

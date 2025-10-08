@@ -1,6 +1,7 @@
 package ru.practicum.shareit.item;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import ru.practicum.shareit.item.comment.model.Comment;
 import ru.practicum.shareit.item.dto.ExtendedItemDto;
 import ru.practicum.shareit.item.dto.ItemDto;
@@ -17,6 +18,7 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+@SpringBootTest
 class ItemMapperTest {
 
     private final User owner = new User(1L, "owner", "owner@email.com");

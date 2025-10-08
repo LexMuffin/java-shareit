@@ -1,6 +1,7 @@
 package ru.practicum.shareit.user;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import ru.practicum.shareit.user.dto.NewUserRequest;
 import ru.practicum.shareit.user.dto.UpdateUserRequest;
 import ru.practicum.shareit.user.dto.UserDto;
@@ -10,6 +11,7 @@ import ru.practicum.shareit.user.model.User;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
+@SpringBootTest
 class UserMapperTest {
 
     private final User user = new User(1L, "user", "user@email.com");
