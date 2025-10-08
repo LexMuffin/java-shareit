@@ -2,9 +2,7 @@ package ru.practicum.shareit.booking.model;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import ru.practicum.shareit.enums.Statuses;
 import ru.practicum.shareit.item.model.Item;
 import ru.practicum.shareit.user.model.User;
@@ -13,6 +11,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "bookings")
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
