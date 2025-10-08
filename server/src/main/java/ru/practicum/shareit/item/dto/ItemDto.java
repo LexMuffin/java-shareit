@@ -14,6 +14,5 @@ public class ItemDto {
     private String description;
     private Boolean available = Boolean.FALSE;
     private Long owner;
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long requestId;
 }
