@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import ru.practicum.shareit.exception.NotFoundException;
 import ru.practicum.shareit.user.dto.NewUserRequest;
@@ -24,8 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Transactional
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 @SpringBootTest(
-        properties = "jdbc.url=jdbc:postgresql://localhost:5433/share_it_test",
-        webEnvironment = SpringBootTest.WebEnvironment.NONE)
+        properties = "jdbc.url=jdbc:postgresql://localhost:5433/share_it_test")
 @ActiveProfiles("test")
 public class UserServiceImplIntegrationTest {
 
