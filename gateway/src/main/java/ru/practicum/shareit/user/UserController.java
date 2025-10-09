@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.shareit.user.UserControllerHeaderConstants;
 import ru.practicum.shareit.user.dto.NewUserRequest;
 import ru.practicum.shareit.user.dto.UpdateUserRequest;
 
@@ -20,6 +19,9 @@ public class UserController {
 
     private final UserClient userClient;
 
+    public final String PATH = "/{id}";
+    public final String ID = "id";
+
     public UserController(UserClient userClient) {
         this.userClient = userClient;
     }
@@ -30,8 +32,8 @@ public class UserController {
         return userClient.createUser(user);
     }
 
-    @GetMapping(UserControllerHeaderConstants.PATH)
-    public ResponseEntity<Object> findUser(@PathVariable(UserControllerHeaderConstants.ID) Long userId) {
+    @GetMapping(PATH)
+    public ResponseEntity<Object> findUser(@PathVariable(ID) Long userId) {
         return userClient.getUserById(userId);
     }
 
@@ -40,14 +42,14 @@ public class UserController {
         return userClient.getAllUsers();
     }
 
-    @PatchMapping(UserControllerHeaderConstants.PATH)
-    public ResponseEntity<Object> update(@PathVariable(UserControllerHeaderConstants.ID) Long userId,
+    @PatchMapping(PATH)
+    public ResponseEntity<Object> update(@PathVariable(ID) Long userId,
                           @Valid @RequestBody UpdateUserRequest newUser) {
         return userClient.updateUser(userId, newUser);
     }
 
-    @DeleteMapping(UserControllerHeaderConstants.PATH)
-    public ResponseEntity<Object> delete(@PathVariable(UserControllerHeaderConstants.ID) Long userId) {
+    @DeleteMapping(PATH)
+    public ResponseEntity<Object> delete(@PathVariable(ID) Long userId) {
         return userClient.deleteUser(userId);
     }
 }

@@ -19,45 +19,50 @@ public class BookingController {
 
     private final BookingService bookingService;
 
-    @GetMapping(BookingControllerHeaderConstants.PATH)
-    public BookingDto findBooking(@PathVariable(BookingControllerHeaderConstants.ID) Long bookingId,
-                                  @RequestHeader(BookingControllerHeaderConstants.X_SHARER_USER_ID) Long userId) {
+    public final String PATH = "/{id}";
+    public final String X_SHARER_USER_ID = "X-Sharer-User-Id";
+    public final String OWNER_PATH = "/owner";
+    public final String ID = "id";
+
+    @GetMapping(PATH)
+    public BookingDto findBooking(@PathVariable(ID) Long bookingId,
+                                  @RequestHeader(X_SHARER_USER_ID) Long userId) {
         return bookingService.findBooking(bookingId, userId);
     }
 
     @GetMapping
-    public List<BookingDto> findAllBookingsByUser(@RequestHeader(BookingControllerHeaderConstants.X_SHARER_USER_ID) Long userId,
+    public List<BookingDto> findAllBookingsByUser(@RequestHeader(X_SHARER_USER_ID) Long userId,
                                                   @RequestParam(name = "state", defaultValue = "ALL") String state) {
         return bookingService.findAllBookingsByUser(userId, state);
     }
 
-    @GetMapping(BookingControllerHeaderConstants.OWNER_PATH)
-    public List<BookingDto> findAllBookingsByOwnerItems(@RequestHeader(BookingControllerHeaderConstants.X_SHARER_USER_ID) Long userId,
+    @GetMapping(OWNER_PATH)
+    public List<BookingDto> findAllBookingsByOwnerItems(@RequestHeader(X_SHARER_USER_ID) Long userId,
                                                         @RequestParam(name = "state", defaultValue = "ALL") String state) {
         return bookingService.findAllBookingsByOwnerItems(userId, state);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BookingDto create(@RequestHeader(BookingControllerHeaderConstants.X_SHARER_USER_ID) Long userId,
+    public BookingDto create(@RequestHeader(X_SHARER_USER_ID) Long userId,
                              @RequestBody NewBookingRequest booking) {
         return bookingService.createBooking(userId, booking);
     }
 
     @PutMapping
-    public BookingDto update(@RequestHeader(BookingControllerHeaderConstants.X_SHARER_USER_ID) Long userId,
+    public BookingDto update(@RequestHeader(X_SHARER_USER_ID) Long userId,
                              @RequestBody UpdateBookingRequest request) {
         return bookingService.updateBooking(userId, request);
     }
 
-    @DeleteMapping(BookingControllerHeaderConstants.PATH)
-    public void delete(@PathVariable(BookingControllerHeaderConstants.ID) Long bookingId) {
+    @DeleteMapping(PATH)
+    public void delete(@PathVariable(ID) Long bookingId) {
         bookingService.deleteBooking(bookingId);
     }
 
-    @PatchMapping(BookingControllerHeaderConstants.PATH)
-    public BookingDto approveBooking(@PathVariable(BookingControllerHeaderConstants.ID) Long bookingId,
-                                     @RequestHeader(BookingControllerHeaderConstants.X_SHARER_USER_ID) Long userId,
+    @PatchMapping(PATH)
+    public BookingDto approveBooking(@PathVariable(ID) Long bookingId,
+                                     @RequestHeader(X_SHARER_USER_ID) Long userId,
                                      @RequestParam(name = "approved", defaultValue = "false") Boolean approved) {
         return bookingService.approveBooking(bookingId, userId, approved);
 

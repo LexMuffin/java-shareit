@@ -1,6 +1,5 @@
 package ru.practicum.shareit.booking.model;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 import ru.practicum.shareit.enums.Statuses;
