@@ -18,29 +18,29 @@ import ru.practicum.shareit.enums.States;
 public class BookingController {
     private final BookingClient bookingClient;
 
-    public final String PATH = "/{id}";
-    public final String X_SHARER_USER_ID = "X-Sharer-User-Id";
-    public final String OWNER_PATH = "/owner";
-    public final String ID = "id";
+    public final String path = "/{id}";
+    public final String xSharerUserId = "X-Sharer-User-Id";
+    public final String ownerPath = "/owner";
+    public final String id = "id";
 
     public BookingController(BookingClient bookingClient) {
         this.bookingClient = bookingClient;
     }
 
-    @GetMapping(PATH)
-    public ResponseEntity<Object> findBooking(@PathVariable(ID) Long bookingId,
-                                  @RequestHeader(X_SHARER_USER_ID) Long userId) {
+    @GetMapping(path)
+    public ResponseEntity<Object> findBooking(@PathVariable(id) Long bookingId,
+                                  @RequestHeader(xSharerUserId) Long userId) {
         return bookingClient.findBooking(bookingId, userId);
     }
 
     @GetMapping
-    public ResponseEntity<Object> findAllBookingsByUser(@RequestHeader(X_SHARER_USER_ID) Long userId,
+    public ResponseEntity<Object> findAllBookingsByUser(@RequestHeader(xSharerUserId) Long userId,
                                                   @RequestParam(name = "state", defaultValue = "ALL") String state) {
         return bookingClient.findAllBookingsByUser(userId, state);
     }
 
-    @GetMapping(OWNER_PATH)
-    public ResponseEntity<Object> findAllBookingsByOwnerItems(@RequestHeader(X_SHARER_USER_ID) Long userId,
+    @GetMapping(ownerPath)
+    public ResponseEntity<Object> findAllBookingsByOwnerItems(@RequestHeader(xSharerUserId) Long userId,
                                                         @RequestParam(name = "state", defaultValue = "ALL") String stateParameter) {
         States state = States.from(stateParameter)
                 .orElseThrow(() -> new IllegalArgumentException("Unknown state: " + stateParameter));
@@ -49,25 +49,25 @@ public class BookingController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> create(@RequestHeader(X_SHARER_USER_ID) Long userId,
+    public ResponseEntity<Object> create(@RequestHeader(xSharerUserId) Long userId,
                              @RequestBody NewBookingRequest booking) {
         return bookingClient.createBooking(userId, booking);
     }
 
     @PutMapping
-    public ResponseEntity<Object> update(@RequestHeader(X_SHARER_USER_ID) Long userId,
+    public ResponseEntity<Object> update(@RequestHeader(xSharerUserId) Long userId,
                              @RequestBody UpdateBookingRequest request) {
         return bookingClient.updateBooking(userId, request);
     }
 
-    @DeleteMapping(PATH)
-    public ResponseEntity<Object> delete(@PathVariable(ID) Long bookingId) {
+    @DeleteMapping(path)
+    public ResponseEntity<Object> delete(@PathVariable(id) Long bookingId) {
         return bookingClient.deleteBooking(bookingId);
     }
 
-    @PatchMapping(PATH)
-    public ResponseEntity<Object> approveBooking(@PathVariable(ID) Long bookingId,
-                                                 @RequestHeader(X_SHARER_USER_ID) Long userId,
+    @PatchMapping(path)
+    public ResponseEntity<Object> approveBooking(@PathVariable(id) Long bookingId,
+                                                 @RequestHeader(xSharerUserId) Long userId,
                                                  @RequestParam(name = "approved", defaultValue = "false") Boolean approved) {
         return bookingClient.approveBooking(bookingId, userId, approved);
 

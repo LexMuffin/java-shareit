@@ -19,8 +19,8 @@ public class UserController {
 
     private final UserClient userClient;
 
-    public final String PATH = "/{id}";
-    public final String ID = "id";
+    public final String path = "/{id}";
+    public final String id = "id";
 
     public UserController(UserClient userClient) {
         this.userClient = userClient;
@@ -32,8 +32,8 @@ public class UserController {
         return userClient.createUser(user);
     }
 
-    @GetMapping(PATH)
-    public ResponseEntity<Object> findUser(@PathVariable(ID) Long userId) {
+    @GetMapping(path)
+    public ResponseEntity<Object> findUser(@PathVariable(id) Long userId) {
         return userClient.getUserById(userId);
     }
 
@@ -42,14 +42,14 @@ public class UserController {
         return userClient.getAllUsers();
     }
 
-    @PatchMapping(PATH)
-    public ResponseEntity<Object> update(@PathVariable(ID) Long userId,
+    @PatchMapping(path)
+    public ResponseEntity<Object> update(@PathVariable(id) Long userId,
                           @Valid @RequestBody UpdateUserRequest newUser) {
         return userClient.updateUser(userId, newUser);
     }
 
-    @DeleteMapping(PATH)
-    public ResponseEntity<Object> delete(@PathVariable(ID) Long userId) {
+    @DeleteMapping(path)
+    public ResponseEntity<Object> delete(@PathVariable(id) Long userId) {
         return userClient.deleteUser(userId);
     }
 }

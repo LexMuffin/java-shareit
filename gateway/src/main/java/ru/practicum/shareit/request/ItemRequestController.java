@@ -15,10 +15,10 @@ import ru.practicum.shareit.request.dto.UpdateRequest;
 public class ItemRequestController {
     public final ItemRequestClient itemRequestClient;
 
-    public final String PATH = "/{request-id}";
-    public final String X_SHARER_USER_ID = "X-Sharer-User-Id";
-    public final String ID = "request-id";
-    public final String ALL_PATH = "/all";
+    public final String path = "/{request-id}";
+    public final String xSharerUserId = "X-Sharer-User-Id";
+    public final String id = "request-id";
+    public final String allPath = "/all";
 
     public ItemRequestController(ItemRequestClient itemRequestClient) {
         this.itemRequestClient = itemRequestClient;
@@ -26,38 +26,38 @@ public class ItemRequestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> createItemRequest(@RequestHeader(X_SHARER_USER_ID) Long userId,
+    public ResponseEntity<Object> createItemRequest(@RequestHeader(xSharerUserId) Long userId,
                                             @RequestBody NewRequest request) {
         return itemRequestClient.createItemRequest(userId, request);
     }
 
-    @GetMapping(PATH)
-    public ResponseEntity<Object> findItemRequest(@PathVariable(ID) Long requestId,
-                                          @RequestHeader(X_SHARER_USER_ID) Long userId) {
+    @GetMapping(path)
+    public ResponseEntity<Object> findItemRequest(@PathVariable(id) Long requestId,
+                                          @RequestHeader(xSharerUserId) Long userId) {
         return itemRequestClient.findItemRequest(requestId, userId);
     }
 
     @GetMapping
     public ResponseEntity<Object> findAllByRequestorId(
-            @RequestHeader(X_SHARER_USER_ID) Long requestorId) {
+            @RequestHeader(xSharerUserId) Long requestorId) {
         return itemRequestClient.findAllByRequestorId(requestorId);
     }
 
-    @GetMapping(ALL_PATH)
+    @GetMapping(allPath)
     public ResponseEntity<Object> findAllOfAnotherRequestors(
-            @RequestHeader(X_SHARER_USER_ID) Long requestorId) {
+            @RequestHeader(xSharerUserId) Long requestorId) {
         return itemRequestClient.findAllOfAnotherRequestors(requestorId);
     }
 
     @PatchMapping
     public ResponseEntity<Object> update(
-            @RequestHeader(X_SHARER_USER_ID) Long userId,
+            @RequestHeader(xSharerUserId) Long userId,
             @RequestBody UpdateRequest request) {
         return itemRequestClient.update(userId, request);
     }
 
-    @DeleteMapping(PATH)
-    public ResponseEntity<Object> delete(@PathVariable(ID) Long itemRequestId) {
+    @DeleteMapping(path)
+    public ResponseEntity<Object> delete(@PathVariable(id) Long itemRequestId) {
         return itemRequestClient.delete(itemRequestId);
     }
 }

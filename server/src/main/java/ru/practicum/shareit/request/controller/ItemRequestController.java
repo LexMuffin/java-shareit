@@ -17,45 +17,45 @@ public class ItemRequestController {
 
     public final ItemRequestService itemRequestService;
 
-    public final String PATH = "/{request-id}";
-    public final String X_SHARER_USER_ID = "X-Sharer-User-Id";
-    public final String ID = "request-id";
-    public final String ALL_PATH = "/all";
+    public final String path = "/{request-id}";
+    public final String xSharerUserId = "X-Sharer-User-Id";
+    public final String id = "request-id";
+    public final String allPath = "/all";
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemRequestDto createItemRequest(@RequestHeader(X_SHARER_USER_ID) Long userId,
+    public ItemRequestDto createItemRequest(@RequestHeader(xSharerUserId) Long userId,
                                             @RequestBody NewRequest request) {
         return itemRequestService.createItemRequest(userId, request);
     }
 
-    @GetMapping(PATH)
-    public ItemRequestDto findItemRequest(@PathVariable(ID) Long requestId,
-                                          @RequestHeader(X_SHARER_USER_ID) Long userId) {
+    @GetMapping(path)
+    public ItemRequestDto findItemRequest(@PathVariable(id) Long requestId,
+                                          @RequestHeader(xSharerUserId) Long userId) {
         return itemRequestService.findItemRequest(requestId);
     }
 
     @GetMapping
     public Collection<ItemRequestDto> findAllByRequestorId(
-            @RequestHeader(X_SHARER_USER_ID) Long requestorId) {
+            @RequestHeader(xSharerUserId) Long requestorId) {
         return itemRequestService.findAllByRequestorId(requestorId);
     }
 
-    @GetMapping(ALL_PATH)
+    @GetMapping(allPath)
     public Collection<ItemRequestDto> findAllOfAnotherRequestors(
-            @RequestHeader(X_SHARER_USER_ID) Long requestorId) {
+            @RequestHeader(xSharerUserId) Long requestorId) {
         return itemRequestService.findAllOfAnotherRequestors(requestorId);
     }
 
     @PatchMapping
     public ItemRequestDto update(
-            @RequestHeader(X_SHARER_USER_ID) Long userId,
+            @RequestHeader(xSharerUserId) Long userId,
             @RequestBody UpdateRequest request) {
         return itemRequestService.update(userId, request);
     }
 
-    @DeleteMapping(PATH)
-    public void delete(@PathVariable(ID) Long itemRequestId) {
+    @DeleteMapping(path)
+    public void delete(@PathVariable(id) Long itemRequestId) {
         itemRequestService.delete(itemRequestId);
     }
 }
