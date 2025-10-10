@@ -51,24 +51,26 @@ public class ExtendedItemDtoJsonTest {
 
     @Test
     public void testExtendedItemDtoDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"name\"," +
-                "\"description\": \"description\"," +
-                "\"available\": true," +
-                "\"owner\": 1," +
-                "\"requestId\": 5," +
-                "\"lastBooking\": \"2024-01-01T10:00:00\"," +
-                "\"nextBooking\": \"2024-01-02T10:00:00\"," +
-                "\"comments\": [" +
-                "   {" +
-                "       \"id\": 1," +
-                "       \"text\": \"Great item!\"," +
-                "       \"authorName\": \"user1\"," +
-                "       \"created\": \"2024-01-01T12:00:00\"" +
-                "   }" +
-                "]" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "name",
+                "description": "description",
+                "available": true,
+                "owner": 1,
+                "requestId": 5,
+                "lastBooking": "2024-01-01T10:00:00",
+                "nextBooking": "2024-01-02T10:00:00",
+                "comments": [
+                    {
+                        "id": 1,
+                        "text": "Great item!",
+                        "authorName": "user1",
+                        "created": "2024-01-01T12:00:00"
+                    }
+                ]
+            }
+            """;
 
         ExtendedItemDto extendedItemDto = extendedItemDtoJson.parseObject(json);
 

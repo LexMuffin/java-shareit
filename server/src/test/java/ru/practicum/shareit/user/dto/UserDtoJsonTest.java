@@ -29,11 +29,13 @@ public class UserDtoJsonTest {
 
     @Test
     public void testUserDtoDeserialization() throws IOException {
-        String stringJson = "{" +
-                "\"id\": 1," +
-                "\"name\": \"name\"," +
-                "\"email\": \"email@email.com\"" +
-                "}";
+        String stringJson = """
+            {
+                "id": 1,
+                "name": "name",
+                "email": "email@email.com"
+            }
+            """;
         UserDto userDto = userDtoJson.parseObject(stringJson);
 
         assertThat(userDto).isNotNull();
@@ -44,11 +46,13 @@ public class UserDtoJsonTest {
 
     @Test
     public void testUserDtoDeserializationWithNullValues() throws IOException {
-        String stringJson = "{" +
-                "\"id\": null," +
-                "\"name\": null," +
-                "\"email\": null" +
-                "}";
+        String stringJson = """
+            {
+                "id": null,
+                "name": null,
+                "email": null
+            }
+            """;
         UserDto userDto = userDtoJson.parseObject(stringJson);
 
         assertThat(userDto).isNotNull();
@@ -59,10 +63,12 @@ public class UserDtoJsonTest {
 
     @Test
     public void testUserDtoDeserializationWithPartialData() throws IOException {
-        String stringJson = "{" +
-                "\"name\": \"name\"," +
-                "\"email\": \"email@email.com\"" +
-                "}";
+        String stringJson = """
+            {
+                "name": "name",
+                "email": "email@email.com"
+            }
+            """;
         UserDto userDto = userDtoJson.parseObject(stringJson);
 
         assertThat(userDto).isNotNull();

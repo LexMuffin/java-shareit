@@ -33,12 +33,14 @@ public class CommentDtoJsonTest {
 
     @Test
     public void testCommentDtoDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"text\": \"comment\"," +
-                "\"authorName\": \"authorName\"," +
-                "\"created\": \"2024-01-01T10:00:00\"" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "text": "comment",
+                "authorName": "authorName",
+                "created": "2024-01-01T10:00:00"
+            }
+            """;
 
         CommentDto commentDto = commentDtoJson.parseObject(json);
 
@@ -51,10 +53,12 @@ public class CommentDtoJsonTest {
 
     @Test
     public void testCommentDtoDeserializationWithPartialData() throws IOException {
-        String json = "{" +
-                "\"text\": \"comment\"," +
-                "\"authorName\": \"authorName\"" +
-                "}";
+        String json = """
+            {
+                "text": "comment",
+                "authorName": "authorName"
+            }
+            """;
 
         CommentDto commentDto = commentDtoJson.parseObject(json);
 

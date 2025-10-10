@@ -20,8 +20,8 @@ public class UserController {
 
     private final UserService userService;
 
-    public final String path = "/{id}";
-    public final String id = "id";
+    private static final String PATH = "/{id}";
+    private static final String ID = "id";
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,8 +29,8 @@ public class UserController {
         return userService.createUser(user);
     }
 
-    @GetMapping(path)
-    public UserDto findUser(@PathVariable(id) Long userId) {
+    @GetMapping(PATH)
+    public UserDto findUser(@PathVariable(ID) Long userId) {
         return userService.getUserById(userId);
     }
 
@@ -39,14 +39,14 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PatchMapping(path)
-    public UserDto update(@PathVariable(id) Long userId,
+    @PatchMapping(PATH)
+    public UserDto update(@PathVariable(ID) Long userId,
                           @Valid @RequestBody UpdateUserRequest newUser) {
         return userService.updateUser(userId, newUser);
     }
 
-    @DeleteMapping(path)
-    public void delete(@PathVariable(id) Long userId) {
+    @DeleteMapping(PATH)
+    public void delete(@PathVariable(ID) Long userId) {
         userService.deleteUser(userId);
     }
 }

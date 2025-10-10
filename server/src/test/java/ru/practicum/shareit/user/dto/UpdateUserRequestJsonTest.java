@@ -29,11 +29,13 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"Updated Name\"," +
-                "\"email\": \"updated@example.com\"" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "Updated Name",
+                "email": "updated@example.com"
+            }
+            """;
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -56,10 +58,12 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserializationWithPartialData() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"Updated Name\"" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "Updated Name"
+            }
+            """;
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -71,9 +75,11 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserializationWithOnlyEmail() throws IOException {
-        String json = "{" +
-                "\"email\": \"updated@example.com\"" +
-                "}";
+        String json = """
+            {
+                "email": "updated@example.com"
+            }
+            """;
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -97,11 +103,13 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestHelperMethods() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"Updated Name\"," +
-                "\"email\": \"updated@example.com\"" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "Updated Name",
+                "email": "updated@example.com"
+            }
+            """;
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -124,11 +132,13 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserializationWithEmptyStrings() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"\"," +
-                "\"email\": \"\"" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "",
+                "email": ""
+            }
+            """;
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -142,11 +152,13 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserializationWithWhitespaceStrings() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"   \"," +
-                "\"email\": \"   \"" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "   ",
+                "email": "   "
+            }
+            """;
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 

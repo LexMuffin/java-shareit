@@ -29,11 +29,13 @@ public class ResponseDtoJsonTest {
 
     @Test
     public void testResponseDtoDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"name\"," +
-                "\"ownerId\": 2" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "name",
+                "ownerId": 2
+            }
+            """;
 
         ResponseDto responseDto = responseDtoJson.parseObject(json);
 
@@ -56,9 +58,11 @@ public class ResponseDtoJsonTest {
 
     @Test
     public void testResponseDtoDeserializationWithPartialData() throws IOException {
-        String json = "{" +
-                "\"name\": \"Дрель\"" +
-                "}";
+        String json = """
+            {
+                "name": "Дрель"
+            }
+            """;
 
         ResponseDto responseDto = responseDtoJson.parseObject(json);
 

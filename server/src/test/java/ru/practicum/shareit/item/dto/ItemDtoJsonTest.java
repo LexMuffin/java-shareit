@@ -32,14 +32,16 @@ public class ItemDtoJsonTest {
 
     @Test
     public void testItemDtoDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"name\"," +
-                "\"description\": \"description\"," +
-                "\"available\": true," +
-                "\"owner\": 1," +
-                "\"requestId\": null" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "name",
+                "description": "description",
+                "available": true,
+                "owner": 1,
+                "requestId": null
+            }
+            """;
 
         ItemDto itemDto = itemDtoJson.parseObject(json);
 
@@ -53,14 +55,16 @@ public class ItemDtoJsonTest {
 
     @Test
     public void testItemDtoDeserializationWithRequestId() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"name\"," +
-                "\"description\": \"description\"," +
-                "\"available\": true," +
-                "\"owner\": 1," +
-                "\"requestId\": 5" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "name",
+                "description": "description",
+                "available": true,
+                "owner": 1,
+                "requestId": 5
+            }
+            """;
 
         ItemDto itemDto = itemDtoJson.parseObject(json);
 

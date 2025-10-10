@@ -36,14 +36,16 @@ public class UpdateBookingRequestJsonTest {
 
     @Test
     public void testUpdateBookingRequestDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"startDate\": \"2024-01-01T10:00:00\"," +
-                "\"endDate\": \"2024-01-02T10:00:00\"," +
-                "\"itemId\": 2," +
-                "\"bookerId\": 3," +
-                "\"status\": \"WAITING\"" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "startDate": "2024-01-01T10:00:00",
+                "endDate": "2024-01-02T10:00:00",
+                "itemId": 2,
+                "bookerId": 3,
+                "status": "WAITING"
+            }
+            """;
 
         UpdateBookingRequest request = updateBookingRequestJson.parseObject(json);
 
@@ -58,11 +60,13 @@ public class UpdateBookingRequestJsonTest {
 
     @Test
     public void testUpdateBookingRequestDeserializationWithPartialData() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"startDate\": \"2024-01-01T10:00:00\"," +
-                "\"itemId\": 2" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "startDate": "2024-01-01T10:00:00",
+                "itemId": 2
+            }
+            """;
 
         UpdateBookingRequest request = updateBookingRequestJson.parseObject(json);
 
@@ -77,12 +81,14 @@ public class UpdateBookingRequestJsonTest {
 
     @Test
     public void testUpdateBookingRequestHelperMethods() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"startDate\": \"2024-01-01T10:00:00\"," +
-                "\"endDate\": \"2024-01-02T10:00:00\"," +
-                "\"itemId\": 2" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "startDate": "2024-01-01T10:00:00",
+                "endDate": "2024-01-02T10:00:00",
+                "itemId": 2
+            }
+            """;
 
         UpdateBookingRequest request = updateBookingRequestJson.parseObject(json);
 

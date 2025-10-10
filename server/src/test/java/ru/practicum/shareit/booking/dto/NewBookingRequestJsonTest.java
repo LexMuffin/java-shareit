@@ -33,12 +33,14 @@ public class NewBookingRequestJsonTest {
 
     @Test
     public void testNewBookingRequestDeserialization() throws IOException {
-        String json = "{" +
-                "\"start\": \"2024-01-01T10:00:00\"," +
-                "\"end\": \"2024-01-02T10:00:00\"," +
-                "\"itemId\": 1," +
-                "\"bookerId\": 2" +
-                "}";
+        String json = """
+            {
+                "start": "2024-01-01T10:00:00",
+                "end": "2024-01-02T10:00:00",
+                "itemId": 1,
+                "bookerId": 2
+            }
+            """;
 
         NewBookingRequest request = newBookingRequestJson.parseObject(json);
 
@@ -51,10 +53,12 @@ public class NewBookingRequestJsonTest {
 
     @Test
     public void testNewBookingRequestDeserializationWithNullValues() throws IOException {
-        String json = "{" +
-                "\"start\": \"2024-01-01T10:00:00\"," +
-                "\"end\": \"2024-01-02T10:00:00\"" +
-                "}";
+        String json = """
+            {
+                "start": "2024-01-01T10:00:00",
+                "end": "2024-01-02T10:00:00"
+            }
+            """;
 
         NewBookingRequest request = newBookingRequestJson.parseObject(json);
 

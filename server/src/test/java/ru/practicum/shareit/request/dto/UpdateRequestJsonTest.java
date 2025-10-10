@@ -32,12 +32,14 @@ public class UpdateRequestJsonTest {
 
     @Test
     public void testUpdateRequestDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"description\": \"Обновленное описание\"," +
-                "\"requestorId\": 1," +
-                "\"created\": \"2024-01-01T10:00:00\"" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "description": "Обновленное описание",
+                "requestorId": 1,
+                "created": "2024-01-01T10:00:00"
+            }
+            """;
 
         UpdateRequest updateRequest = updateRequestJson.parseObject(json);
 
@@ -62,9 +64,11 @@ public class UpdateRequestJsonTest {
 
     @Test
     public void testUpdateRequestDeserializationWithPartialData() throws IOException {
-        String json = "{" +
-                "\"description\": \"Только описание\"" +
-                "}";
+        String json = """
+            {
+                "description": "Только описание"
+            }
+            """;
 
         UpdateRequest updateRequest = updateRequestJson.parseObject(json);
 
@@ -77,9 +81,11 @@ public class UpdateRequestJsonTest {
 
     @Test
     public void testUpdateRequestDeserializationWithOnlyId() throws IOException {
-        String json = "{" +
-                "\"id\": 5" +
-                "}";
+        String json = """
+            {
+                "id": 5
+            }
+            """;
 
         UpdateRequest updateRequest = updateRequestJson.parseObject(json);
 

@@ -28,10 +28,12 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserialization() throws IOException {
-        String json = "{" +
-                "\"name\": \"John Doe\"," +
-                "\"email\": \"john.doe@example.com\"" +
-                "}";
+        String json = """
+            {
+                "name": "John Doe",
+                "email": "john.doe@example.com"
+            }
+            """;
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -42,10 +44,12 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithEmptyName() throws IOException {
-        String json = "{" +
-                "\"name\": \"\"," +
-                "\"email\": \"john.doe@example.com\"" +
-                "}";
+        String json = """
+            {
+                "name": "",
+                "email": "john.doe@example.com"
+            }
+            """;
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -56,10 +60,12 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithWhitespaceName() throws IOException {
-        String json = "{" +
-                "\"name\": \"   \"," +
-                "\"email\": \"john.doe@example.com\"" +
-                "}";
+        String json = """
+            {
+                "name": "   ",
+                "email": "john.doe@example.com"
+            }
+            """;
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -70,10 +76,12 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithEmptyEmail() throws IOException {
-        String json = "{" +
-                "\"name\": \"John Doe\"," +
-                "\"email\": \"\"" +
-                "}";
+        String json = """
+            {
+                "name": "John Doe",
+                "email": ""
+            }
+            """;
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -84,9 +92,11 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithOnlyName() throws IOException {
-        String json = "{" +
-                "\"name\": \"John Doe\"" +
-                "}";
+        String json = """
+            {
+                "name": "John Doe"
+            }
+            """;
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -97,9 +107,11 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithOnlyEmail() throws IOException {
-        String json = "{" +
-                "\"email\": \"john.doe@example.com\"" +
-                "}";
+        String json = """
+            {
+                "email": "john.doe@example.com"
+            }
+            """;
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 

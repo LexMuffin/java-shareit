@@ -28,10 +28,12 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserialization() throws IOException {
-        String json = "{" +
-                "\"description\": \"Нужна дрель для ремонта\"," +
-                "\"requestorId\": 1" +
-                "}";
+        String json = """
+            {
+                "description": "Нужна дрель для ремонта",
+                "requestorId": 1
+            }
+            """;
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 
@@ -42,9 +44,11 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserializationWithOnlyDescription() throws IOException {
-        String json = "{" +
-                "\"description\": \"Нужен молоток\"" +
-                "}";
+        String json = """
+            {
+                "description": "Нужен молоток"
+            }
+            """;
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 
@@ -55,9 +59,11 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserializationWithOnlyRequestorId() throws IOException {
-        String json = "{" +
-                "\"requestorId\": 5" +
-                "}";
+        String json = """
+            {
+                "requestorId": 5
+            }
+            """;
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 
@@ -79,10 +85,12 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserializationWithEmptyDescription() throws IOException {
-        String json = "{" +
-                "\"description\": \"\"," +
-                "\"requestorId\": 1" +
-                "}";
+        String json = """
+            {
+                "description": "",
+                "requestorId": 1
+            }
+            """;
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 
@@ -93,10 +101,12 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserializationWithWhitespaceDescription() throws IOException {
-        String json = "{" +
-                "\"description\": \"   \"," +
-                "\"requestorId\": 2" +
-                "}";
+        String json = """
+            {
+                "description": "   ",
+                "requestorId": 2
+            }
+            """;
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 

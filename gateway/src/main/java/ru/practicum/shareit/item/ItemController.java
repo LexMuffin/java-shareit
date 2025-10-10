@@ -19,12 +19,12 @@ import ru.practicum.shareit.item.dto.UpdateItemRequest;
 public class ItemController {
     private final ItemClient itemClient;
 
-    public final String path = "/{id}";
-    public final String xSharerUserId = "X-Sharer-User-Id";
-    public final String searchPath = "/search";
-    public final String id = "id";
-    public final String commentPath = "/comment";
-    public final String pathPlusCommentPath = path + commentPath;
+    private static final String PATH = "/{id}";
+    private static final String X_SHARER_USER_ID = "X-Sharer-User-Id";
+    private static final String SEARCH_PATH = "/search";
+    private static final String ID = "id";
+    private static final String COMMENT_PATH = "/comment";
+    private static final String PATH_PLUS_COMMENT_PATH = PATH + COMMENT_PATH;
 
     public ItemController(ItemClient itemClient) {
         this.itemClient = itemClient;
@@ -32,44 +32,44 @@ public class ItemController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> create(@RequestHeader(xSharerUserId) Long ownerId,
+    public ResponseEntity<Object> create(@RequestHeader(X_SHARER_USER_ID) Long ownerId,
                                          @Valid @RequestBody NewItemRequest item) {
         return itemClient.createItem(ownerId, item);
     }
 
-    @GetMapping(path)
-    public ResponseEntity<Object> findItem(@Valid @PathVariable(id) Long itemId,
-                                    @RequestHeader(xSharerUserId) Long ownerId) {
+    @GetMapping(PATH)
+    public ResponseEntity<Object> findItem(@Valid @PathVariable(ID) Long itemId,
+                                    @RequestHeader(X_SHARER_USER_ID) Long ownerId) {
         return itemClient.getItemById(itemId, ownerId);
     }
 
-    @GetMapping(searchPath)
-    public ResponseEntity<Object> findItemsForTenant(@RequestHeader(value = xSharerUserId, required = false) Long ownerId,
+    @GetMapping(SEARCH_PATH)
+    public ResponseEntity<Object> findItemsForTenant(@RequestHeader(value = X_SHARER_USER_ID, required = false) Long ownerId,
                                                   @RequestParam(name = "text", defaultValue = "") String text) {
         return itemClient.getItemByText(ownerId, text);
     }
 
     @GetMapping
-    public ResponseEntity<Object> getItems(@RequestHeader(xSharerUserId) Long ownerId) {
+    public ResponseEntity<Object> getItems(@RequestHeader(X_SHARER_USER_ID) Long ownerId) {
         return itemClient.getAllItemsById(ownerId);
     }
 
-    @PatchMapping(path)
-    public ResponseEntity<Object> update(@PathVariable(id) Long itemId,
+    @PatchMapping(PATH)
+    public ResponseEntity<Object> update(@PathVariable(ID) Long itemId,
                           @Valid @RequestBody UpdateItemRequest newItem,
-                          @RequestHeader(xSharerUserId) Long ownerId) {
+                          @RequestHeader(X_SHARER_USER_ID) Long ownerId) {
         return itemClient.updateItem(itemId, newItem, ownerId);
     }
 
-    @DeleteMapping(path)
-    public ResponseEntity<Object> delete(@Valid @PathVariable(id) Long itemId) {
+    @DeleteMapping(PATH)
+    public ResponseEntity<Object> delete(@Valid @PathVariable(ID) Long itemId) {
         return itemClient.deleteItem(itemId);
     }
 
-    @PostMapping(pathPlusCommentPath)
+    @PostMapping(PATH_PLUS_COMMENT_PATH)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> addComment(@RequestHeader(xSharerUserId) Long authorId,
-                                 @PathVariable(id) Long itemId,
+    public ResponseEntity<Object> addComment(@RequestHeader(X_SHARER_USER_ID) Long authorId,
+                                 @PathVariable(ID) Long itemId,
                                  @Valid @RequestBody NewCommentRequest newCommentRequest) {
         return itemClient.addComment(authorId, itemId, newCommentRequest);
     }

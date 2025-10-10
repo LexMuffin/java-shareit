@@ -23,53 +23,53 @@ public class ItemController {
 
     private final ExtendedItemService itemService;
 
-    public final String path = "/{id}";
-    public final String xSharerUserId = "X-Sharer-User-Id";
-    public final String searchPath = "/search";
-    public final String id = "id";
-    public final String commentPath = "/comment";
-    public final String pathPlusCommentPath = path + commentPath;
+    private static final String PATH = "/{id}";
+    private static final String X_SHARER_USER_ID = "X-Sharer-User-Id";
+    private static final String SEARCH_PATH = "/search";
+    private static final String ID = "id";
+    private static final String COMMENT_PATH = "/comment";
+    private static final String PATH_PLUS_COMMENT_PATH = PATH + COMMENT_PATH;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemDto create(@RequestHeader(xSharerUserId) Long ownerId,
+    public ItemDto create(@RequestHeader(X_SHARER_USER_ID) Long ownerId,
                           @Valid @RequestBody NewItemRequest item) {
         return itemService.createItem(ownerId, item);
     }
 
-    @GetMapping(path)
-    public ExtendedItemDto findItem(@Valid @PathVariable(id) Long itemId,
-                                    @RequestHeader(xSharerUserId) Long ownerId) {
+    @GetMapping(PATH)
+    public ExtendedItemDto findItem(@Valid @PathVariable(ID) Long itemId,
+                                    @RequestHeader(X_SHARER_USER_ID) Long ownerId) {
         return itemService.getItemById(itemId, ownerId);
     }
 
-    @GetMapping(searchPath)
-    public Collection<ItemDto> findItemsForTenant(@RequestHeader(value = xSharerUserId, required = false) Long ownerId,
+    @GetMapping(SEARCH_PATH)
+    public Collection<ItemDto> findItemsForTenant(@RequestHeader(value = X_SHARER_USER_ID, required = false) Long ownerId,
                                                   @RequestParam(name = "text", defaultValue = "") String text) {
         return itemService.getItemByText(text);
     }
 
     @GetMapping
-    public Collection<ExtendedItemDto> getItems(@RequestHeader(xSharerUserId) Long ownerId) {
+    public Collection<ExtendedItemDto> getItems(@RequestHeader(X_SHARER_USER_ID) Long ownerId) {
         return itemService.getAllItemsById(ownerId);
     }
 
-    @PatchMapping(path)
-    public ItemDto update(@PathVariable(id) Long itemId,
+    @PatchMapping(PATH)
+    public ItemDto update(@PathVariable(ID) Long itemId,
                           @Valid @RequestBody UpdateItemRequest newItem,
-                          @RequestHeader(xSharerUserId) Long ownerId) {
+                          @RequestHeader(X_SHARER_USER_ID) Long ownerId) {
         return itemService.updateItem(itemId, newItem, ownerId);
     }
 
-    @DeleteMapping(path)
-    public void delete(@Valid @PathVariable(id) Long itemId) {
+    @DeleteMapping(PATH)
+    public void delete(@Valid @PathVariable(ID) Long itemId) {
         itemService.deleteItem(itemId);
     }
 
-    @PostMapping(pathPlusCommentPath)
+    @PostMapping(PATH_PLUS_COMMENT_PATH)
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentDto addComment(@RequestHeader(xSharerUserId) Long authorId,
-                                 @PathVariable(id) Long itemId,
+    public CommentDto addComment(@RequestHeader(X_SHARER_USER_ID) Long authorId,
+                                 @PathVariable(ID) Long itemId,
                                  @Valid @RequestBody NewCommentRequest newCommentRequest) {
         return itemService.addComment(authorId, itemId, newCommentRequest);
     }

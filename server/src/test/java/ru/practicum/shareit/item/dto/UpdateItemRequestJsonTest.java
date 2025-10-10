@@ -32,14 +32,16 @@ public class UpdateItemRequestJsonTest {
 
     @Test
     public void testUpdateItemRequestDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"updatedName\"," +
-                "\"description\": \"updatedDescription\"," +
-                "\"available\": false," +
-                "\"owner\": 1," +
-                "\"requestId\": 5" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "updatedName",
+                "description": "updatedDescription",
+                "available": false,
+                "owner": 1,
+                "requestId": 5
+            }
+            """;
 
         UpdateItemRequest request = updateItemRequestJson.parseObject(json);
 

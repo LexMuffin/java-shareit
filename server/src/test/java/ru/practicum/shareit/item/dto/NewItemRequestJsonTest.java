@@ -32,14 +32,16 @@ public class NewItemRequestJsonTest {
 
     @Test
     public void testNewItemRequestDeserialization() throws IOException {
-        String json = "{" +
-                "\"id\": 1," +
-                "\"name\": \"name\"," +
-                "\"description\": \"description\"," +
-                "\"available\": true," +
-                "\"owner\": 1," +
-                "\"requestId\": 5" +
-                "}";
+        String json = """
+            {
+                "id": 1,
+                "name": "name",
+                "description": "description",
+                "available": true,
+                "owner": 1,
+                "requestId": 5
+            }
+            """;
 
         NewItemRequest request = newItemRequestJson.parseObject(json);
 
@@ -54,11 +56,13 @@ public class NewItemRequestJsonTest {
 
     @Test
     public void testNewItemRequestDeserializationWithRequiredFieldsOnly() throws IOException {
-        String json = "{" +
-                "\"name\": \"name\"," +
-                "\"description\": \"description\"," +
-                "\"available\": true" +
-                "}";
+        String json = """
+            {
+                "name": "name",
+                "description": "description",
+                "available": true
+            }
+            """;
 
         NewItemRequest request = newItemRequestJson.parseObject(json);
 
