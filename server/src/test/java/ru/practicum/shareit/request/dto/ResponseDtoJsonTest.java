@@ -29,6 +29,7 @@ public class ResponseDtoJsonTest {
 
     @Test
     public void testResponseDtoDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -36,6 +37,7 @@ public class ResponseDtoJsonTest {
                 "ownerId": 2
             }
             """;
+        // CHECKSTYLE:ON
 
         ResponseDto responseDto = responseDtoJson.parseObject(json);
 
@@ -58,11 +60,13 @@ public class ResponseDtoJsonTest {
 
     @Test
     public void testResponseDtoDeserializationWithPartialData() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "name": "Дрель"
             }
             """;
+        // CHECKSTYLE:ON
 
         ResponseDto responseDto = responseDtoJson.parseObject(json);
 

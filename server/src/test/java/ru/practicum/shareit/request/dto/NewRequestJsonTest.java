@@ -28,12 +28,14 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "description": "Нужна дрель для ремонта",
                 "requestorId": 1
             }
             """;
+        // CHECKSTYLE:ON
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 
@@ -44,11 +46,13 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserializationWithOnlyDescription() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "description": "Нужен молоток"
             }
             """;
+        // CHECKSTYLE:ON
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 
@@ -59,11 +63,13 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserializationWithOnlyRequestorId() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "requestorId": 5
             }
             """;
+        // CHECKSTYLE:ON
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 
@@ -85,12 +91,14 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserializationWithEmptyDescription() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "description": "",
                 "requestorId": 1
             }
             """;
+        // CHECKSTYLE:ON
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 
@@ -101,12 +109,14 @@ public class NewRequestJsonTest {
 
     @Test
     public void testNewRequestDeserializationWithWhitespaceDescription() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "description": "   ",
                 "requestorId": 2
             }
             """;
+        // CHECKSTYLE:ON
 
         NewRequest newRequest = newRequestJson.parseObject(json);
 

@@ -33,6 +33,7 @@ public class CommentDtoJsonTest {
 
     @Test
     public void testCommentDtoDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -41,6 +42,7 @@ public class CommentDtoJsonTest {
                 "created": "2024-01-01T10:00:00"
             }
             """;
+        // CHECKSTYLE:ON
 
         CommentDto commentDto = commentDtoJson.parseObject(json);
 
@@ -53,12 +55,14 @@ public class CommentDtoJsonTest {
 
     @Test
     public void testCommentDtoDeserializationWithPartialData() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "text": "comment",
                 "authorName": "authorName"
             }
             """;
+        // CHECKSTYLE:ON
 
         CommentDto commentDto = commentDtoJson.parseObject(json);
 

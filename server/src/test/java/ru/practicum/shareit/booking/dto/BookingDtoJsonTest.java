@@ -44,6 +44,7 @@ public class BookingDtoJsonTest {
 
     @Test
     public void testBookingDtoDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -65,6 +66,7 @@ public class BookingDtoJsonTest {
                 }
             }
             """;
+        // CHECKSTYLE:ON
 
         BookingDto bookingDto = bookingDtoJson.parseObject(json);
 

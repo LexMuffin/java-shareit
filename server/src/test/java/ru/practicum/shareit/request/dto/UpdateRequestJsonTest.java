@@ -32,6 +32,7 @@ public class UpdateRequestJsonTest {
 
     @Test
     public void testUpdateRequestDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -40,6 +41,7 @@ public class UpdateRequestJsonTest {
                 "created": "2024-01-01T10:00:00"
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateRequest updateRequest = updateRequestJson.parseObject(json);
 
@@ -64,11 +66,13 @@ public class UpdateRequestJsonTest {
 
     @Test
     public void testUpdateRequestDeserializationWithPartialData() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "description": "Только описание"
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateRequest updateRequest = updateRequestJson.parseObject(json);
 
@@ -81,11 +85,13 @@ public class UpdateRequestJsonTest {
 
     @Test
     public void testUpdateRequestDeserializationWithOnlyId() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 5
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateRequest updateRequest = updateRequestJson.parseObject(json);
 

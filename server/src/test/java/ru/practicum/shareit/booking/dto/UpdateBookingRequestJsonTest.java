@@ -36,6 +36,7 @@ public class UpdateBookingRequestJsonTest {
 
     @Test
     public void testUpdateBookingRequestDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -46,6 +47,7 @@ public class UpdateBookingRequestJsonTest {
                 "status": "WAITING"
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateBookingRequest request = updateBookingRequestJson.parseObject(json);
 
@@ -60,6 +62,7 @@ public class UpdateBookingRequestJsonTest {
 
     @Test
     public void testUpdateBookingRequestDeserializationWithPartialData() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -67,6 +70,7 @@ public class UpdateBookingRequestJsonTest {
                 "itemId": 2
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateBookingRequest request = updateBookingRequestJson.parseObject(json);
 
@@ -81,6 +85,7 @@ public class UpdateBookingRequestJsonTest {
 
     @Test
     public void testUpdateBookingRequestHelperMethods() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -89,6 +94,7 @@ public class UpdateBookingRequestJsonTest {
                 "itemId": 2
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateBookingRequest request = updateBookingRequestJson.parseObject(json);
 

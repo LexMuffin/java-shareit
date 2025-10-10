@@ -29,6 +29,7 @@ public class UserDtoJsonTest {
 
     @Test
     public void testUserDtoDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String stringJson = """
             {
                 "id": 1,
@@ -36,6 +37,7 @@ public class UserDtoJsonTest {
                 "email": "email@email.com"
             }
             """;
+        // CHECKSTYLE:ON
         UserDto userDto = userDtoJson.parseObject(stringJson);
 
         assertThat(userDto).isNotNull();
@@ -46,6 +48,7 @@ public class UserDtoJsonTest {
 
     @Test
     public void testUserDtoDeserializationWithNullValues() throws IOException {
+        // CHECKSTYLE:OFF
         String stringJson = """
             {
                 "id": null,
@@ -53,6 +56,7 @@ public class UserDtoJsonTest {
                 "email": null
             }
             """;
+        // CHECKSTYLE:ON
         UserDto userDto = userDtoJson.parseObject(stringJson);
 
         assertThat(userDto).isNotNull();
@@ -63,12 +67,14 @@ public class UserDtoJsonTest {
 
     @Test
     public void testUserDtoDeserializationWithPartialData() throws IOException {
+        // CHECKSTYLE:OFF
         String stringJson = """
             {
                 "name": "name",
                 "email": "email@email.com"
             }
             """;
+        // CHECKSTYLE:ON
         UserDto userDto = userDtoJson.parseObject(stringJson);
 
         assertThat(userDto).isNotNull();

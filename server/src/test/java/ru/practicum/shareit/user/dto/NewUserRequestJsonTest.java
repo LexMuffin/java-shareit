@@ -28,12 +28,14 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "name": "John Doe",
                 "email": "john.doe@example.com"
             }
             """;
+        // CHECKSTYLE:ON
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -44,12 +46,14 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithEmptyName() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "name": "",
                 "email": "john.doe@example.com"
             }
             """;
+        // CHECKSTYLE:ON
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -60,12 +64,14 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithWhitespaceName() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "name": "   ",
                 "email": "john.doe@example.com"
             }
             """;
+        // CHECKSTYLE:ON
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -76,12 +82,14 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithEmptyEmail() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "name": "John Doe",
                 "email": ""
             }
             """;
+        // CHECKSTYLE:ON
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -92,11 +100,13 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithOnlyName() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "name": "John Doe"
             }
             """;
+        // CHECKSTYLE:ON
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 
@@ -107,11 +117,13 @@ public class NewUserRequestJsonTest {
 
     @Test
     public void testNewUserRequestDeserializationWithOnlyEmail() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "email": "john.doe@example.com"
             }
             """;
+        // CHECKSTYLE:ON
 
         NewUserRequest newUserRequest = newUserRequestJson.parseObject(json);
 

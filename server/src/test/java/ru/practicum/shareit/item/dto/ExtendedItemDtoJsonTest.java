@@ -51,6 +51,7 @@ public class ExtendedItemDtoJsonTest {
 
     @Test
     public void testExtendedItemDtoDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -71,6 +72,7 @@ public class ExtendedItemDtoJsonTest {
                 ]
             }
             """;
+        // CHECKSTYLE:ON
 
         ExtendedItemDto extendedItemDto = extendedItemDtoJson.parseObject(json);
 

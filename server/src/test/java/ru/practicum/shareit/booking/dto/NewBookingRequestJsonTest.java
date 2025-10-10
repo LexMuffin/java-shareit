@@ -33,6 +33,7 @@ public class NewBookingRequestJsonTest {
 
     @Test
     public void testNewBookingRequestDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "start": "2024-01-01T10:00:00",
@@ -41,6 +42,7 @@ public class NewBookingRequestJsonTest {
                 "bookerId": 2
             }
             """;
+        // CHECKSTYLE:ON
 
         NewBookingRequest request = newBookingRequestJson.parseObject(json);
 
@@ -53,12 +55,14 @@ public class NewBookingRequestJsonTest {
 
     @Test
     public void testNewBookingRequestDeserializationWithNullValues() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "start": "2024-01-01T10:00:00",
                 "end": "2024-01-02T10:00:00"
             }
             """;
+        // CHECKSTYLE:ON
 
         NewBookingRequest request = newBookingRequestJson.parseObject(json);
 

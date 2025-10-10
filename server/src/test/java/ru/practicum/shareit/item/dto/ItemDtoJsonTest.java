@@ -32,6 +32,7 @@ public class ItemDtoJsonTest {
 
     @Test
     public void testItemDtoDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -42,6 +43,7 @@ public class ItemDtoJsonTest {
                 "requestId": null
             }
             """;
+        // CHECKSTYLE:ON
 
         ItemDto itemDto = itemDtoJson.parseObject(json);
 
@@ -55,6 +57,7 @@ public class ItemDtoJsonTest {
 
     @Test
     public void testItemDtoDeserializationWithRequestId() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -65,6 +68,7 @@ public class ItemDtoJsonTest {
                 "requestId": 5
             }
             """;
+        // CHECKSTYLE:ON
 
         ItemDto itemDto = itemDtoJson.parseObject(json);
 

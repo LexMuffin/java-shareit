@@ -29,6 +29,7 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -36,6 +37,7 @@ public class UpdateUserRequestJsonTest {
                 "email": "updated@example.com"
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -58,12 +60,14 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserializationWithPartialData() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
                 "name": "Updated Name"
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -75,11 +79,13 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserializationWithOnlyEmail() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "email": "updated@example.com"
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -103,6 +109,7 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestHelperMethods() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -110,6 +117,7 @@ public class UpdateUserRequestJsonTest {
                 "email": "updated@example.com"
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -132,6 +140,7 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserializationWithEmptyStrings() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -139,6 +148,7 @@ public class UpdateUserRequestJsonTest {
                 "email": ""
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 
@@ -152,6 +162,7 @@ public class UpdateUserRequestJsonTest {
 
     @Test
     public void testUpdateUserRequestDeserializationWithWhitespaceStrings() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -159,6 +170,7 @@ public class UpdateUserRequestJsonTest {
                 "email": "   "
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateUserRequest updateUserRequest = updateUserRequestJson.parseObject(json);
 

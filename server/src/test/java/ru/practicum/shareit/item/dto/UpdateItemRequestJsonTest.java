@@ -32,6 +32,7 @@ public class UpdateItemRequestJsonTest {
 
     @Test
     public void testUpdateItemRequestDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -42,6 +43,7 @@ public class UpdateItemRequestJsonTest {
                 "requestId": 5
             }
             """;
+        // CHECKSTYLE:ON
 
         UpdateItemRequest request = updateItemRequestJson.parseObject(json);
 

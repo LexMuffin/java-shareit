@@ -32,6 +32,7 @@ public class NewItemRequestJsonTest {
 
     @Test
     public void testNewItemRequestDeserialization() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "id": 1,
@@ -42,6 +43,7 @@ public class NewItemRequestJsonTest {
                 "requestId": 5
             }
             """;
+        // CHECKSTYLE:ON
 
         NewItemRequest request = newItemRequestJson.parseObject(json);
 
@@ -56,6 +58,7 @@ public class NewItemRequestJsonTest {
 
     @Test
     public void testNewItemRequestDeserializationWithRequiredFieldsOnly() throws IOException {
+        // CHECKSTYLE:OFF
         String json = """
             {
                 "name": "name",
@@ -63,6 +66,7 @@ public class NewItemRequestJsonTest {
                 "available": true
             }
             """;
+        // CHECKSTYLE:ON
 
         NewItemRequest request = newItemRequestJson.parseObject(json);
 
